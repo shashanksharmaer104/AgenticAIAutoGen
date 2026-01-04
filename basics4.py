@@ -15,7 +15,7 @@ async def main():
         model="gpt-5-mini"
     )
 
-    assistant = AssistantAgent(name="MathTutor",
+    assistant = AssistantAgent(name="Math Tutor",
                            model_client=openai_model_client,
                            system_message="You are helpful math tutor. Help the user solve math problems step by step"
                                           "When user says 'THANKS DONE', 'EXIT', 'THANKS' or similar, acknowledge and say 'LESSON COMPLETED' to end session."
@@ -26,7 +26,7 @@ async def main():
     team = RoundRobinGroupChat(participants=[user_proxy, assistant],
                         termination_condition= TextMentionTermination("LESSON COMPLETED"))
 
-    await Console(team.run_stream(task="I need help with algebra problem. Can you help me solve 2*4+5"))
+    await Console(team.run_stream(task="I need help with algebra problems."))
 
 
 asyncio.run(main())
