@@ -22,9 +22,13 @@ async def main():
         model_info=model_info,
     )
 
-    assistant = AssistantAgent(name="assistant", model_client=ollama_client)
+    assistant = AssistantAgent(
+        name="MathTutor",
+        model_client=ollama_client,
+        system_message="You are a expert and helpful math tutor who can solve some complex math equations and problems."
+    )
 
-    await Console(assistant.run_stream(task="What is 2*4?"))
+    await Console(assistant.run_stream(task="Solve this linear equation. Find value of x: 4x-7(2-x)=3x+2"))
     await ollama_client.close()
 
 asyncio.run(main())
