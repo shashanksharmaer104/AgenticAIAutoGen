@@ -1,0 +1,19 @@
+from autogen_agentchat.agents import AssistantAgent
+
+from framework.mcp_config import McpConfig
+
+
+class AgentFactory:
+
+    def __init__(self, model_client):
+        self.model_client = model_client
+        self.McpConfig = McpConfig()
+
+    def create_database_agent(self, system_message):
+        database_agent = AssistantAgent(
+            name="DatabaseAgent",
+            model_client=self.model_client,
+            workbench=self.McpConfig.get_mysql_workbench(),
+            system_message=system_message
+        )
+        return database_agent
