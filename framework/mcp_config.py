@@ -3,10 +3,8 @@ from autogen_ext.tools.mcp import StdioServerParams, McpWorkbench
 
 class McpConfig:
 
-    def __init__(self):
-        pass
-
-    def get_mysql_workbench(self):
+    @staticmethod
+    def get_mysql_workbench():
         mysql_server_params = StdioServerParams(
             command="/Library/Frameworks/Python.framework/Versions/3.14/bin/uv",
             args=[
@@ -25,7 +23,8 @@ class McpConfig:
         )
         return McpWorkbench(mysql_server_params)
 
-    def get_rest_api_workbench(self):
+    @staticmethod
+    def get_rest_api_workbench():
         rest_api_server_params = StdioServerParams(
             args=[
                 "-y",
@@ -38,7 +37,8 @@ class McpConfig:
         )
         return McpWorkbench(rest_api_server_params)
 
-    def get_excel_workbench(self):
+    @staticmethod
+    def get_excel_workbench():
         excel_server_params = StdioServerParams(
             args=["--yes", "@negokaz/excel-mcp-server"],
             env={"EXCEL_MCP_PAGING_CELLS_LIMIT": "4000"},
@@ -46,7 +46,8 @@ class McpConfig:
         )
         return McpWorkbench(excel_server_params)
 
-    def get_file_system_workbench(self):
+    @staticmethod
+    def get_file_system_workbench():
         file_system_server_params = StdioServerParams(
             args=[
                 "-y",
