@@ -26,6 +26,7 @@ class McpConfig:
     @staticmethod
     def get_rest_api_workbench():
         rest_api_server_params = StdioServerParams(
+            command="npx",
             args=[
                 "-y",
                 "dkmaker-mcp-rest-api"
@@ -40,6 +41,7 @@ class McpConfig:
     @staticmethod
     def get_excel_workbench():
         excel_server_params = StdioServerParams(
+            command="npx",
             args=["--yes", "@negokaz/excel-mcp-server"],
             env={"EXCEL_MCP_PAGING_CELLS_LIMIT": "4000"},
             read_timeout_seconds=60
@@ -49,6 +51,7 @@ class McpConfig:
     @staticmethod
     def get_file_system_workbench():
         file_system_server_params = StdioServerParams(
+            command="npx",
             args=[
                 "-y",
                 "@modelcontextprotocol/server-filesystem",
