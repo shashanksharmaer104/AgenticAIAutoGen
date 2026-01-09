@@ -17,3 +17,21 @@ class AgentFactory:
             system_message=system_message
         )
         return database_agent
+
+    def create_rest_api_agent(self, system_message):
+        rest_api_agent = AssistantAgent(
+            name="RestAPIAgent",
+            model_client=self.model_client,
+            workbench=[self.McpConfig.get_rest_api_workbench(), self.McpConfig.get_file_system_workbench()],
+            system_message=system_message
+        )
+        return rest_api_agent
+
+    def create_excel_agent(self, system_message):
+        excel_agent = AssistantAgent(
+            name="ExcelAgent",
+            model_client=self.model_client,
+            workbench=self.McpConfig.get_excel_workbench(),
+            system_message=system_message
+        )
+        return excel_agent
